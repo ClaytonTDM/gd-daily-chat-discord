@@ -1,6 +1,10 @@
 # GD Daily Chat if it was Discord
 
+You may run into trouble running on Replit due to RobTop banning their IP. I've provided a link to try anyways just in case.
+
 [![Run on Replit](https://replit.com/badge/github/replit/clui)](https://replit.com/github/ClaytonTDM/gd-daily-chat-discord)
+
+---
 
 No profile pictures yet, so enjoy normal face
 
