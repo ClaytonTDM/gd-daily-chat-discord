@@ -21,7 +21,6 @@ app.get('/comments', async (req, res) => {
     const id = JSON.stringify(level.id);
     const page1 = await gd.getComments(id, 1, 0);
     const page2 = await gd.getComments(id, 2, 0);
-    // merge the two json arrays
     const comments = page1.concat(page2);
     res.send(comments);
     // i absolutely love how simple this is
