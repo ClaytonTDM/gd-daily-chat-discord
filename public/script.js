@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-    alert('Click anywhere on the page to enable ping sounds');
+    setTimeout(function () {
+        alert('Click anywhere on the page to enable ping sounds');
+    }, 1000);
 });
 
 let oldData = [];
@@ -69,7 +71,7 @@ function fetchComments() {
                 timeSpan.style.display = 'inline-block';
                 timeSpan.style.fontSize = '0.8em';
                 timeSpan.style.color = 'gray';
-                timeSpan.style.marginRight = '-7px';
+                timeSpan.style.marginLeft = '-3px';
                 // Create a p for the content
                 const p = document.createElement('p');
                 p.textContent = item.content;
