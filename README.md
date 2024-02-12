@@ -1,4 +1,5 @@
 # GD Daily Chat if it was Discord
+
 [![Run on Replit](https://replit.com/badge/github/replit/clui)](https://replit.com/github/ClaytonTDM/gd-daily-chat-discord)
 
 No profile pictures yet, so enjoy normal face
