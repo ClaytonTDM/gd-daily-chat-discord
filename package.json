@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "express": "^4.18.2",
+    "gj-boomlings-api": "^2.0.0"
+  }
+}
