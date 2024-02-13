@@ -87,23 +87,13 @@ function fetchComments() {
                 const li = document.createElement('li');
 
                 const div = document.createElement('div');
-                div.style.display = 'flex';
-                div.style.alignItems = 'top';
-                div.style.marginBottom = '10px';
+                div.classList.add('div');
 
                 const iconDiv = document.createElement('div');
-                iconDiv.style.width = '32px';
-                iconDiv.style.height = '32px';
-                iconDiv.style.marginRight = '10px';
-                iconDiv.style.marginTop = '5px';
-                // iconDiv.style.backgroundColor = 'black';
-                // iconDiv.style.borderRadius = '50%';
+                iconDiv.classList.add('iconDiv');
 
                 const img = document.createElement('img');
                 img.src = `/icon?i=${encodeURIComponent(`${item.iconType}_${item.iconID}`)}`;
-                img.style.width = '32px';
-                img.style.height = '32px';
-                // img.style.borderRadius = '50%';
 
                 iconDiv.appendChild(img);
 
@@ -113,15 +103,10 @@ function fetchComments() {
                 a.textContent = `${item.username}`;
                 a.href = `https://gdbrowser.com/u/${item.username}`;
                 a.target = '_blank';
-                a.style.display = 'inline-block';
-                a.style.marginRight = '10px';
 
                 const timeSpan = document.createElement('span');
+                // timeSpan.classList.add('timeSpan');
                 timeSpan.textContent = `${item.age} ago`;
-                timeSpan.style.display = 'inline-block';
-                timeSpan.style.fontSize = '0.8em';
-                timeSpan.style.color = 'gray';
-                timeSpan.style.marginLeft = '-3px';
                 const p = document.createElement('p');
                 p.textContent = item.content;
 

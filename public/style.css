@@ -66,12 +66,42 @@ p {
 }
 
 a {
+    display: inline-block;
+    margin-right: 10px;
     text-decoration: none;
     color: #dbdee1;
 }
 
 a:hover {
     text-decoration: underline;
+}
+
+.div {
+    display: flex;
+    align-items: top;
+    margin-bottom: 10px;
+}
+
+.iconDiv {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+    margin-top: 5px;
+    /* background-color: black; */
+    /* border-radius: 50%; */
+}
+
+img {
+    width: 32px;
+    height: 32px;
+    /* border-radius: 50%; */
+}
+
+span {
+    display: inline-block;
+    font-size: 0.8em;
+    color: gray;
+    margin-left: -3px;
 }
 
 .hidden {
