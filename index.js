@@ -1,5 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const rateLimit = require("express-rate-limit");
 const sharp = require('sharp');
 const axios = require('axios');
 const { Readable } = require('stream');
@@ -12,21 +13,37 @@ let cachedLevel;
 let levelId;
 
 let error = false;
+let connectedIP;
+
+const singleIpMiddleware = (req, res, next) => {
+    if (connectedIP && connectedIP !== req.ip) {
+        res.status(429).send('Only one IP can be connected at a time.');
+    } else {
+        connectedIP = req.ip;
+        next();
+    }
+};
 
 app.use(express.static('public'))
 app.use(cookieParser());
 
-app.get('/comments', async (req, res) => {
+const limiter = rateLimit({
+    windowMs: 1900,
+    max: 1,
+    message: { success: false }
+});
+
+app.get('/comments', singleIpMiddleware, limiter, async (req, res) => {
     let level;
     const currentTime = new Date();
-    if (lastFetchTime && ((currentTime - lastFetchTime) < 3600000)) {
+    if (lastFetchTime && ((currentTime - lastFetchTime) < 3.96e+6)) {
         level = cachedLevel;
     } else {
         level = await gd.getDailyLevel()
-        .catch((error) => {
-            console.error('Error:', error);
-            error = true;
-        });
+            .catch((error) => {
+                console.error('Error:', error);
+                error = true;
+            });
         cachedLevel = level;
         lastFetchTime = currentTime;
     }
@@ -73,7 +90,7 @@ app.get('/comments', async (req, res) => {
     }
 });
 
-app.get('/post', async (req, res) => {
+app.post('/post', singleIpMiddleware, limiter, async (req, res) => {
     const username = req.cookies.username;
     const password = req.cookies.password;
     if (!username || !password) {
@@ -96,14 +113,16 @@ app.get('/icon', async (req, res) => {
     try {
         const icon = req.query.i;
         let url;
-        if (icon.includes('cube')) {
+        if (icon && icon.includes('cube')) {
             url = `https://gdbrowser.com/iconkit/premade/${icon.replace('cube', 'icon')}.png`;
-        } else if (icon == 'coin_0') {
+        } else if (icon && icon == 'coin_0') {
             url = `https://gdbrowser.com/assets/coin.png`;
-        } else if (icon == 'coin_1') {
+        } else if (icon && icon == 'coin_1') {
             url = `https://gdbrowser.com/assets/bluecoin.png`;
-        } else {
+        } else if (icon) {
             url = `https://gdbrowser.com/iconkit/premade/${icon}.png`;
+        } else {
+            res.send({ success: false })
         }
 
         // Fetch the image from the provided URL
@@ -125,9 +144,9 @@ app.get('/icon', async (req, res) => {
                 background: { r: 0, g: 0, b: 0, alpha: 0 }
             }
         })
-        .composite([{ input: resizedImageBuffer }])
-        .png()
-        .toBuffer();
+            .composite([{ input: resizedImageBuffer }])
+            .png()
+            .toBuffer();
 
         // Send the resulting image back as a response
         const stream = new Readable();
@@ -141,7 +160,7 @@ app.get('/icon', async (req, res) => {
     }
 });
 
-app.get('/signin', async (req, res) => {
+app.post('/signin', singleIpMiddleware, limiter, async (req, res) => {
     const username = req.query.u;
     const password = req.query.p;
     try {
@@ -164,7 +183,7 @@ app.get('/checksignin', async (req, res) => {
     }
 });
 
-app.get('/signout', async (req, res) => {
+app.post('/signout', async (req, res) => {
     res.clearCookie('username');
     res.clearCookie('password');
     res.send({ success: true });

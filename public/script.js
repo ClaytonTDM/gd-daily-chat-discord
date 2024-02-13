@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 let oldData = [];
 let signedIn = false;
+let loopEnabled = true;
 
 function checkSignIn() {
     fetch('/checksignin')
@@ -34,7 +35,7 @@ checkSignIn();
 function signIn() {
     const username = prompt('GD Username');
     const password = prompt('GD Password');
-    fetch(`/signin?u=${username}&p=${password}`)
+    fetch(`/signin?u=${username}&p=${password}`, { method: 'POST' })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
@@ -48,7 +49,7 @@ function signIn() {
 }
 
 function signOut() {
-    fetch('/signout')
+    fetch('/signout', { method: 'POST' })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
@@ -151,12 +152,13 @@ function fetchComments() {
 
 function postComment() {
     const message = document.querySelector('#message').value;
-    fetch(`/post?c=${message}`)
+    fetch(`/post?c=${message}`, { method: 'POST' })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
                 document.querySelector('#message').value = '';
                 document.querySelector('#message').disabled = false;
+                loopEnabled = false;
                 fetchComments();
             } else {
                 document.querySelector('#message').disabled = false;
@@ -174,4 +176,10 @@ document.addEventListener('keydown', function (event) {
 });
 
 fetchComments();
-setInterval(fetchComments, 2.25e3);
+setInterval(function(){
+    if (loopEnabled) {
+        fetchComments();
+    } else {
+        loopEnabled = true;
+    }
+}, 2.25e3);

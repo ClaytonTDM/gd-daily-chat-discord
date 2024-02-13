@@ -14,7 +14,7 @@ body {
 ul {
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 8px;
     list-style-type: none;
     padding: 0;
     padding-bottom: 68px;
