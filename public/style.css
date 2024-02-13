@@ -1,6 +1,10 @@
+html {
+    scroll-behavior: auto !important;
+}
+
 body {
-    background-color: #36393f;
-    color: #dcddde;
+    background-color: #313338;
+    color: #dbdee1;
     font-family: 'Whitney', sans-serif;
     overflow: hidden;
 }
@@ -8,6 +12,7 @@ body {
 ul {
     list-style-type: none;
     padding: 0;
+    padding-bottom: 68px;
     margin: 0;
 }
 
@@ -15,6 +20,55 @@ li {
     padding: 10px;
     /* border-bottom: 1px solid #4a4d52; */
 }
+
 p {
     margin: 1px;
+}
+
+#message {
+    position: fixed; /* Position the element relative to the viewport */
+    bottom: 0;
+    width: auto; /* Let the width be determined by the left and right properties */
+    left: 16px; /* Set the left position to 10px to create the margin */
+    right: 16px; /* Set the right position to 10px to create the margin */
+    text-align: left;
+    height: 44px;
+    padding-left: 16px;
+    margin-bottom: 24px;
+    font-size: calc(1.375rem * 0.7);
+    border-radius: 8px;
+    background-color: #383a40;
+    border: none;
+    color: #dbdee1;
+}
+
+#message::placeholder {
+    color: #6d6f78;
+}
+
+#message:focus {
+    outline: none;
+}
+
+#message:disabled {
+    color: #6d6f78;
+}
+
+#signin {
+    position: fixed; /* Position the button relative to the viewport */
+    top: 10px; /* Set the top position to 10px to create a margin */
+    right: 10px; /* Set the right position to 10px to create a margin */
+}
+
+a {
+    text-decoration: none;
+    color: #dbdee1;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.hidden {
+    display: none;
 }
