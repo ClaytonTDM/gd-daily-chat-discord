@@ -1,3 +1,4 @@
+// TODO: likes/dislikes (in the style of Discord reactions), percent
 /*
 document.addEventListener('DOMContentLoaded', function () {
     setTimeout(function () {
@@ -136,7 +137,6 @@ function fetchComments() {
 
             window.scrollTo(0, document.body.scrollHeight);
         })
-        .catch(error => console.error('Error:', error));
 }
 
 function postComment() {
