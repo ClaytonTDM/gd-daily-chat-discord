@@ -66,6 +66,10 @@ function fetchComments() {
     fetch('/comments')
         .then(response => response.json())
         .then(data => {
+            if (document.querySelector('#message') && document.querySelector('#message').disabled) {
+                document.querySelector('#message').disabled = false;
+                document.querySelector('#message').value = '';
+            }
             data.reverse();
 
             if (oldData.length > 0 && (oldData[0].username !== data[0].username || oldData[0].content !== data[0].content)) {
@@ -141,10 +145,10 @@ function postComment() {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                document.querySelector('#message').value = '';
-                document.querySelector('#message').disabled = false;
-                loopEnabled = false;
-                fetchComments();
+                // document.querySelector('#message').value = '';
+                // document.querySelector('#message').disabled = false;
+                // loopEnabled = false;
+                // fetchComments();
             } else {
                 document.querySelector('#message').disabled = false;
                 alert('Failed to post comment');

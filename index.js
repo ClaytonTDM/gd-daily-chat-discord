@@ -90,7 +90,7 @@ app.get('/comments', singleIpMiddleware, limiter, async (req, res) => {
     }
 });
 
-app.post('/post', singleIpMiddleware, limiter, async (req, res) => {
+app.post('/post', singleIpMiddleware, async (req, res) => {
     const username = req.cookies.username;
     const password = req.cookies.password;
     if (!username || !password) {
