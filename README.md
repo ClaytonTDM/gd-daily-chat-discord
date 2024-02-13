@@ -9,4 +9,4 @@ You may run into trouble running on Replit due to RobTop banning their IP.
 > [!IMPORTANT]  
 > Only one browser tab from one IP can be open at a time.
 
-![Screenshot](https://github.com/ClaytonTDM/gd-daily-chat-discord/assets/71360210/fdb1ce4e-a132-414f-abf6-aa16ba7ed16e)
+![Screenshot](https://github.com/ClaytonTDM/gd-daily-chat-discord/assets/71360210/91ba447b-695e-42a8-97f9-0dcfbefca3fe)
