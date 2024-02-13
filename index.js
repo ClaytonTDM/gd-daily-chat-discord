@@ -102,6 +102,8 @@ app.get('/icon', async (req, res) => {
             url = `https://gdbrowser.com/assets/coin.png`;
         } else if (icon == 'coin_1') {
             url = `https://gdbrowser.com/assets/bluecoin.png`;
+        } else {
+            url = `https://gdbrowser.com/iconkit/premade/${icon}.png`;
         }
 
         // Fetch the image from the provided URL
