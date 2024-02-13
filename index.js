@@ -11,6 +11,8 @@ let lastFetchTime;
 let cachedLevel;
 let levelId;
 
+let error = false;
+
 app.use(express.static('public'))
 app.use(cookieParser());
 
@@ -20,11 +22,15 @@ app.get('/comments', async (req, res) => {
     if (lastFetchTime && ((currentTime - lastFetchTime) < 3600000)) {
         level = cachedLevel;
     } else {
-        level = await gd.getDailyLevel();
+        level = await gd.getDailyLevel()
+        .catch((error) => {
+            console.error('Error:', error);
+            error = true;
+        });
         cachedLevel = level;
         lastFetchTime = currentTime;
     }
-    if (level) {
+    if (level && !error) {
         levelId = JSON.stringify(level.id);
         const page1 = await gd.getComments(levelId, 1, 0);
         const page2 = await gd.getComments(levelId, 2, 0);
@@ -32,36 +38,36 @@ app.get('/comments', async (req, res) => {
         res.send(comments);
     } else {
         res.send([{
-            content: 'robtop is stupid and forgot to set a daily level lol (or you got banned)',
-            playerID: 1226306,
+            content: 'either youre banned for 1h (most likely) or rob forgot to set a daily level lol',
+            playerID: 0,
             likes: 1,
             disliked: false,
-            percent: 100,
+            percent: 0,
             id: 1,
             age: '1 second',
             username: 'System',
-            iconID: 2,
+            iconID: 0,
             c1: '#000000',
             c2: '#FFFFFF',
-            iconType: 'jetpack',
+            iconType: 'coin',
             glow: true,
-            accountID: 470068
+            accountID: 0
         },
         {
             content: 'FIRE IN THE HOLE!',
-            playerID: 16321648,
+            playerID: 0,
             likes: 1,
             disliked: false,
-            percent: 100,
+            percent: 0,
             id: 1,
             age: '1 second',
-            username: 'fireintheHole',
-            iconID: 2,
+            username: 'RobTop',
+            iconID: 420,
             c1: '#000000',
             c2: '#FFFFFF',
-            iconType: 'jetpack',
+            iconType: 'cube',
             glow: true,
-            accountID: 470068
+            accountID: 0
         }
         ])
     }
@@ -92,8 +98,10 @@ app.get('/icon', async (req, res) => {
         let url;
         if (icon.includes('cube')) {
             url = `https://gdbrowser.com/iconkit/premade/${icon.replace('cube', 'icon')}.png`;
-        } else {
-            url = `https://gdbrowser.com/iconkit/premade/${icon}.png`;
+        } else if (icon == 'coin_0') {
+            url = `https://gdbrowser.com/assets/coin.png`;
+        } else if (icon == 'coin_1') {
+            url = `https://gdbrowser.com/assets/bluecoin.png`;
         }
 
         // Fetch the image from the provided URL

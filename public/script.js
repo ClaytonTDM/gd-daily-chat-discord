@@ -99,11 +99,7 @@ function fetchComments() {
                 // iconDiv.style.borderRadius = '50%';
 
                 const img = document.createElement('img');
-                if (item.username === 'System') {
-                    img.src = 'https://gdbrowser.com/assets/bluecoin.png';
-                } else {
-                    img.src = `/icon?i=${encodeURIComponent(`${item.iconType}_${item.iconID}`)}`;
-                }
+                img.src = `/icon?i=${encodeURIComponent(`${item.iconType}_${item.iconID}`)}`;
                 img.style.width = '32px';
                 img.style.height = '32px';
                 // img.style.borderRadius = '50%';
