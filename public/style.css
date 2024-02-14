@@ -26,6 +26,14 @@ li {
     /* border-bottom: 1px solid #4a4d52; */
 }
 
+ul li:last-child {
+    margin-bottom: 0;
+}
+
+ul li.haslikes:last-child {
+    margin-bottom: 14px;
+}
+
 p {
     margin-top: -2px;
     margin-left: 0;
@@ -81,7 +89,6 @@ a:hover {
 .div {
     display: flex;
     align-items: top;
-    margin-bottom: 10px;
 }
 
 .iconDiv {
@@ -104,6 +111,21 @@ span {
     font-size: 0.8em;
     color: gray;
     margin-left: -3px;
+}
+
+.likes {
+    cursor: pointer;
+    margin-left: 45px;
+    margin-top: 5px;
+    margin-bottom: -10px;
+    /* outline: solid 1px #4a4d52; */
+}
+
+.emoji {
+    /* set to size of text */
+    width: 1em;
+    height: 1em;
+    margin-right: 5px;
 }
 
 .hidden {

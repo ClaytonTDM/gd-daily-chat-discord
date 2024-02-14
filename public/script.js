@@ -93,6 +93,7 @@ function fetchComments() {
 
                 const div = document.createElement('div');
                 div.classList.add('div');
+                div.dataset.id = item.id;
 
                 const iconDiv = document.createElement('div');
                 iconDiv.classList.add('iconDiv');
@@ -122,17 +123,42 @@ function fetchComments() {
                 div.appendChild(iconDiv);
                 div.appendChild(textDiv);
 
+                const likesDiv = document.createElement('div');
+                likesDiv.classList.add('likes');
+                likesDiv.textContent = '👍' + item.likes;
+                if (item.disliked) {
+                    likesDiv.textContent = '👎' + item.likes;
+                }
+                if (item.likes < 1 && item.likes > -1) {
+                    likesDiv.classList.add('hidden');
+                    div.style.marginBottom = '10px';
+                }
+                likesDiv.onclick = function() {
+                    // TODO: Send request to server to like this comment
+                    // On server response, update likes count
+                };
+
+            
+                li.appendChild(div);
+            
+                newUl.appendChild(li);
+
                 li.appendChild(div);
 
+                li.appendChild(likesDiv);
+
                 newUl.appendChild(li);
+
             });
 
             const oldUl = document.querySelector('ul');
             if (oldUl) {
                 oldUl.replaceWith(newUl);
+                twemoji.parse(document.body)
             } else {
                 document.body.appendChild(newUl);
                 document.body.appendChild(msgBar);
+                twemoji.parse(document.body)
             }
 
             window.scrollTo(0, document.body.scrollHeight);
@@ -167,7 +193,7 @@ document.addEventListener('keydown', function (event) {
 fetchComments();
 setInterval(function(){
     if (loopEnabled) {
-        fetchComments();
+        // fetchComments();
     } else {
         loopEnabled = true;
     }
