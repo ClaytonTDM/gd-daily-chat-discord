@@ -189,6 +189,23 @@ app.post('/signout', async (req, res) => {
     res.send({ success: true });
 });
 
+app.post('/like', limiter, async (req, res) => {
+    const username = req.cookies.username;
+    const password = req.cookies.password;
+    const id = req.query.i;
+    if (!username || !password) {
+        res.send({ success: false });
+        return;
+    }
+    try {
+        await gd.likeComment(id, username, password); // function doesnt exist but ill implement smth with gdbrowser later
+    } catch (error) {
+        res.send({ success: false });
+        return;
+    }
+    res.send({ success: true });
+});
+
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`);
 });

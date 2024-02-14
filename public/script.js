@@ -124,18 +124,30 @@ function fetchComments() {
                 div.appendChild(textDiv);
 
                 const likesDiv = document.createElement('div');
+                li.classList.add('haslikes');
                 likesDiv.classList.add('likes');
-                likesDiv.textContent = '👍' + item.likes;
+                const likesSpan = document.createElement('span');
+                likesSpan.classList.add('likesSpan');
+                likesSpan.textContent = item.likes;
+
+                likesDiv.textContent = '👍'
                 if (item.disliked) {
-                    likesDiv.textContent = '👎' + item.likes;
+                    likesDiv.textContent = '👎'
                 }
                 if (item.likes < 1 && item.likes > -1) {
-                    likesDiv.classList.add('hidden');
-                    div.style.marginBottom = '10px';
+                    // likesDiv.classList.add('hidden');
+                    // div.style.marginBottom = '10px';
                 }
                 likesDiv.onclick = function() {
                     // TODO: Send request to server to like this comment
                     // On server response, update likes count
+                    if (likesDiv.classList.contains('likes')) {
+                        likesDiv.classList.remove('likes');
+                        likesDiv.classList.add('likesSelected');
+                    } else if (likesDiv.classList.contains('likesSelected')) {
+                        likesDiv.classList.remove('likesSelected');
+                        likesDiv.classList.add('likes');
+                    }
                 };
 
             
@@ -146,6 +158,8 @@ function fetchComments() {
                 li.appendChild(div);
 
                 li.appendChild(likesDiv);
+
+                likesDiv.appendChild(likesSpan);
 
                 newUl.appendChild(li);
 

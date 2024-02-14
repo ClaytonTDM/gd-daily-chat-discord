@@ -113,19 +113,63 @@ span {
     margin-left: -3px;
 }
 
+.likesSelected {
+    cursor: pointer;
+    margin-left: 45px;
+    margin-top: 5px;
+    margin-bottom: -10px;
+    padding: 2px 6px;
+    outline: .0625rem solid #5865f2;
+    background-color: #373a54;
+    border-radius: 0.5rem;
+    display: inline-block;
+}
+
 .likes {
     cursor: pointer;
     margin-left: 45px;
     margin-top: 5px;
     margin-bottom: -10px;
-    /* outline: solid 1px #4a4d52; */
+    padding: 2px 6px;
+    outline: .0625rem solid #5a5c6000;
+    background-color: #2b2d31;
+    border-radius: 0.5rem;
+    display: inline-block;
+    transition: background-color calc(0.125s * 0.5) ease-in-out,
+        outline calc(0.125s * 0.5) ease-in-out;
+}
+
+.likes:hover {
+    outline: .0625rem solid #5a5c60;
+    background-color: #313338;
+    transition: background-color calc(0.125s * 0.5) ease-in-out,
+        outline calc(0.125s * 0.5) ease-in-out;
+}
+
+.likes:active {
+    outline: .0625rem solid #5a5c6000;
+    background-color: #232428;
+    transition: background-color calc(0.125s * 0.5) ease-in-out,
+        outline calc(0.125s * 0.5) ease-in-out;
+    transition-delay: calc(0.125s * 0.75);
+    /* adjust this value to the delay you want */
+}
+
+.likesSpan {
+    color: #dbddf9;
+    font-size: 1em;
+    margin-right: 3px;
+    margin-left: 1px;
+    transition: background-color calc(0.125s * 0.5) ease-in-out,
+        outline calc(0.125s * 0.5) ease-in-out;
 }
 
 .emoji {
     /* set to size of text */
     width: 1em;
     height: 1em;
-    margin-right: 5px;
+    margin-right: 6px;
+    margin-left: 3px;
 }
 
 .hidden {
