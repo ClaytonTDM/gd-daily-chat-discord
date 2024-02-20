@@ -54,13 +54,21 @@ app.get(
             // const page1 = await gd.getComments(levelId, 1, 0);
             // const page2 = await gd.getComments(levelId, 2, 0);
             // const comments = page1.concat(page2);
+            try {
+                const response = await fetch(
+                    `https://gdbrowser.com/api/comments/${levelId}?count=20&page=0&time`
+                );
 
-            // redoing this - fetch https://gdbrowser.com/api/comments/IdHere?count=20&page=0&time instead (use fetch api)
-            const response = await fetch(
-                `https://gdbrowser.com/api/comments/${levelId}?count=20&page=0&time`
-            );
-            const comments = await response.json();
-            res.send(comments);
+                if (!response.ok) {
+                    console.warn(`HTTP error! status: ${response.status}`);
+                    res.send({ success: false });
+                }
+
+                const comments = await response.json();
+                res.send(comments);
+            } catch (error) {
+                res.send({ success: false });
+            }
         } else {
             res.send([
                 {
