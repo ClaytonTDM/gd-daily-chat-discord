@@ -81,7 +81,7 @@ function fetchComments() {
                 (oldData[0].username !== data[0].username ||
                     oldData[0].content !== data[0].content)
             ) {
-                new Audio("ping.mp3").play();
+                new Audio("gnip.mp3").play();
             }
 
             oldData = data.slice(0, 1);
