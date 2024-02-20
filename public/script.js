@@ -50,7 +50,7 @@ function signIn() {
         .then((response) => response.json())
         .then((data) => {
             if (data.success) {
-                warning(false);x
+                warning(false);
                 alert("Successfully signed in");
                 checkSignIn();
             } else {
