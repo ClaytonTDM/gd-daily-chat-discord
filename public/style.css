@@ -149,9 +149,9 @@ span {
 .likes:active {
     outline: .0625rem solid #5a5c6000;
     background-color: #232428;
-    transition: background-color calc(0.125s * 0.5) ease-in-out,
-        outline calc(0.125s * 0.5) ease-in-out;
-    transition-delay: calc(0.125s * 0.75);
+    transition: background-color calc(0.25s * 0.5) ease-in-out,
+        outline 0.125s ease-in-out;
+    /* transition-delay: calc(0.125s * 0.75); */
     /* adjust this value to the delay you want */
 }
 
