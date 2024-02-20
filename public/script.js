@@ -11,10 +11,20 @@ let oldData = [];
 let signedIn = false;
 let loopEnabled = true;
 
+function warning(value, error) {
+    if (value) {
+        if (error) { console.error("Error:", error); }
+        document.querySelector("#warning").classList.remove("invisible");
+    } else {
+        document.querySelector("#warning").classList.add("invisible");
+    }
+}
+
 function checkSignIn() {
     fetch("/checksignin")
         .then((response) => response.json())
         .then((data) => {
+            warning(false)
             const signInButton = document.querySelector("#signin");
             if (data.success) {
                 signedIn = true;
@@ -40,6 +50,7 @@ function signIn() {
         .then((response) => response.json())
         .then((data) => {
             if (data.success) {
+                warning(false);x
                 alert("Successfully signed in");
                 checkSignIn();
             } else {
@@ -67,6 +78,7 @@ function fetchComments() {
     fetch("/comments")
         .then((response) => response.json())
         .then((data) => {
+            warning(false);
             if (
                 document.querySelector("#message") &&
                 document.querySelector("#message").disabled
@@ -211,7 +223,8 @@ function fetchComments() {
             }
 
             window.scrollTo(0, document.body.scrollHeight);
-        });
+        })
+        .catch((error) => warning(true, error));
 }
 
 function postComment() {
@@ -246,4 +259,4 @@ setInterval(function () {
     } else {
         loopEnabled = true;
     }
-}, 1e3);
+}, 2.25e3);

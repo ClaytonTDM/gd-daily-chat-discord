@@ -142,8 +142,8 @@ span {
 .likes:hover {
     outline: .0625rem solid #5a5c60;
     background-color: #313338;
-    transition: background-color calc(0.125s * 0.5) ease-in-out,
-        outline calc(0.125s * 0.5) ease-in-out;
+    /*transition: background-color calc(0.125s * 0.5) ease-in-out,
+        outline calc(0.125s * 0.5) ease-in-out;*/
 }
 
 .likes:active {
@@ -152,7 +152,6 @@ span {
     transition: background-color calc(0.25s * 0.5) ease-in-out,
         outline 0.125s ease-in-out;
     /* transition-delay: calc(0.125s * 0.75); */
-    /* adjust this value to the delay you want */
 }
 
 .likesSpan {
@@ -172,6 +171,33 @@ span {
     margin-left: 3px;
 }
 
+.btn {
+    z-index: 1;
+    background-color: #313338d0;
+    backdrop-filter: blur(1px);
+}
+
+.warning {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 1.1em;
+    height: 1.1em;
+    margin-left: 27px;
+    margin-bottom: 5px;
+}
+
+span.warning {
+    width: auto;
+    height: auto;
+    padding-left: 25px;
+    margin-bottom: 3px;
+}
+
 .hidden {
     display: none;
+}
+
+.invisible {
+    visibility: hidden;
 }

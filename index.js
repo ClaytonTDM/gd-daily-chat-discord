@@ -62,6 +62,7 @@ app.get(
                 if (!response.ok) {
                     console.warn(`HTTP error! status: ${response.status}`);
                     res.send({ success: false });
+                    return;
                 }
 
                 const comments = await response.json();
