@@ -143,6 +143,7 @@ function fetchComments() {
           likesDiv.textContent = "👎";
         }
         if (item.likes < 1 && item.likes > -1) {
+            li.classList.remove("haslikes");
           likesDiv.classList.add('hidden');
           div.style.marginBottom = '10px';
         }
