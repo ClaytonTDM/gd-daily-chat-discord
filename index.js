@@ -186,7 +186,7 @@ app.get("/icon", async (req, res) => {
         // Resize the image to fit into a 50x50 square
         const resizedImageBuffer = await sharp(imageBuffer)
             .resize({ fit: "inside", width: 50, height: 50 })
-            .png()
+            .webp()
             .toBuffer();
 
         // Create a transparent canvas and paste the resized image onto it
@@ -199,14 +199,14 @@ app.get("/icon", async (req, res) => {
             },
         })
             .composite([{ input: resizedImageBuffer }])
-            .png()
+            .webp()
             .toBuffer();
 
         // Send the resulting image back as a response
         const stream = new Readable();
         stream.push(canvasBuffer);
         stream.push(null); // Signals the end of the stream
-        res.set("Content-Type", "image/png");
+        res.set("Content-Type", "image/webp");
         stream.pipe(res);
     } catch (error) {
         console.error("Error:", error);
