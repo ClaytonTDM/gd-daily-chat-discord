@@ -259,4 +259,4 @@ setInterval(function () {
     } else {
         loopEnabled = true;
     }
-}, 2.25e3);
+}, 1e3);
