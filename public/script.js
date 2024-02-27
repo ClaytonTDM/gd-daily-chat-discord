@@ -1,4 +1,4 @@
-// TODO: likes/dislikes (in the style of Discord reactions), percent
+// TODO: likes/dislikes (in the style of Discord reactions) [done], percent
 /*
 document.addEventListener('DOMContentLoaded', function () {
     setTimeout(function () {
