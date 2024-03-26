@@ -118,9 +118,10 @@ function fetchComments() {
                 iconDiv.classList.add("iconDiv");
 
                 const img = document.createElement("img");
+                // console.log(item.icon);
                 img.src = `/icon?i=${encodeURIComponent(
                     `${item.icon.form}_${item.icon.icon}`
-                )}`;
+                )}&type=${item.icon.form}&value=${item.icon.icon}&color1=${item.icon.col1}&color2=${item.icon.col2}&glow=${item.icon.glow}`;
 
                 iconDiv.appendChild(img);
 
