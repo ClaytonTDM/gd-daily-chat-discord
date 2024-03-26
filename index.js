@@ -184,20 +184,25 @@ app.post("/post", singleIpMiddleware, async (req, res) => {
 app.get("/icon", async (req, res) => {
     // if oatmealine is on, just get the image from localhost:2013/icon.png?type=cube&value=181&color1=8&color2=70 (for example)
     if (config.useOatmealineIconRender) {
-        const type = (req.query.type).replace("icon", "cube");
-        const value = req.query.value;
-        const color1 = req.query.color1;
-        const color2 = req.query.color2;
-        const glow = req.query.glow;
-        const url = `http://localhost:2013/icon.png?type=${type}&value=${value}&color1=${color1}&color2=${color2}&glow=${glow}`;
-        const response = await axios.get(url, { responseType: "arraybuffer" });
-        const imageBuffer = Buffer.from(response.data, "binary");
-        const stream = new Readable();
-        stream.push(imageBuffer);
-        stream.push(null); // Signals the end of the stream
-        res.set("Content-Type", "image/png");
-        stream.pipe(res);
-        return;
+        try {
+            const type = (req.query.type).replace("icon", "cube");
+            const value = req.query.value;
+            const color1 = req.query.color1;
+            const color2 = req.query.color2;
+            const glow = req.query.glow;
+            const url = `http://localhost:2013/icon.png?type=${type}&value=${value}&color1=${color1}&color2=${color2}&glow=${glow}`;
+            const response = await axios.get(url, { responseType: "arraybuffer" });
+            const imageBuffer = Buffer.from(response.data, "binary");
+            const stream = new Readable();
+            stream.push(imageBuffer);
+            stream.push(null); // Signals the end of the stream
+            res.set("Content-Type", "image/png");
+            stream.pipe(res);
+            return;
+        } catch (error) {
+            console.error("Error:", error);
+            res.status(500).send("Internal Server Error");
+        }
     }
     try {
         const icon = req.query.i;
