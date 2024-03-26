@@ -6,7 +6,37 @@ You may run into trouble running on Replit due to RobTop banning their IP.
 
 ---
 
+## Installation
+
+0. Install [Crystal](https://crystal-lang.org/) + [libvips](https://www.libvips.org/) and its development packages for [the icon renderer](https://github.com/oatmealine/gd-icon-renderer-web/)
+1. Clone the repo:
+
+   ```sh
+   git clone https://github.com/ClaytonTDM/gd-daily-chat-discord.git
+   cd gd-daily-chat-discord
+   ```
+2. Install Node.js packages
+
+   ```sh
+   npm i
+   ```
+3. Install Crystal packages
+
+   ```sh
+   cd oatmealine-renderer
+   shards install
+   ```
+
+4. Run the project!
+
+   ```sh
+   cd ..
+   node index.js
+   ```
+
+---
+
 > [!IMPORTANT]  
 > Only one IP can be connected at a time.
 
-![Screenshot](https://github.com/ClaytonTDM/gd-daily-chat-discord/assets/71360210/91ba447b-695e-42a8-97f9-0dcfbefca3fe)
+![Screenshot](https://github.com/ClaytonTDM/gd-daily-chat-discord/assets/71360210/85cd20b8-0225-424d-8c8b-493f822d5a86)
