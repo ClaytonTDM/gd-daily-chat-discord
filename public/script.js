@@ -216,11 +216,11 @@ function fetchComments() {
             const oldUl = document.querySelector("ul");
             if (oldUl) {
                 oldUl.replaceWith(newUl);
-                twemoji.parse(document.body);
+                // twemoji.parse(document.body);
             } else {
                 document.body.appendChild(newUl);
                 document.body.appendChild(msgBar);
-                twemoji.parse(document.body);
+                // twemoji.parse(document.body);
             }
 
             window.scrollTo(0, document.body.scrollHeight);

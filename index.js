@@ -10,7 +10,7 @@ const app = express();
 const port = 3000;
 
 let config = {
-    "useOatmealineIconRender": true
+    "useOatmealineIconRender": false // change if you want colored icons
 };
 
 let lastFetchTime;
