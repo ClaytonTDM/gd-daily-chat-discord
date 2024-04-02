@@ -37,6 +37,6 @@ You may run into trouble running on Replit due to RobTop banning their IP.
 ---
 
 > [!IMPORTANT]  
-> Only one IP can be connected at a time.
+> Only one IP should be connected at a time.
 
 ![Screenshot](https://github.com/ClaytonTDM/gd-daily-chat-discord/assets/71360210/85cd20b8-0225-424d-8c8b-493f822d5a86)
