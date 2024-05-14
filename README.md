@@ -23,7 +23,7 @@ You may run into trouble running on Replit due to RobTop banning their IP.
    ```sh
    npm i
    ```
-3. Install Crystal packages
+3. **(OPTIONAL)** Install Crystal packages
 
    ```sh
    cd oatmealine-renderer
