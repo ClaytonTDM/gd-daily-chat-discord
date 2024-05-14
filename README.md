@@ -8,7 +8,7 @@ You may run into trouble running on Replit due to RobTop banning their IP.
 
 ## Installation
 
-0. Install [Crystal](https://crystal-lang.org/) + [libvips](https://www.libvips.org/) and its development packages for [the icon renderer](https://github.com/oatmealine/gd-icon-renderer-web/)
+0. **(OPTIONAL)** Install [Crystal](https://crystal-lang.org/) + [libvips](https://www.libvips.org/) and its development packages for [the icon renderer](https://github.com/oatmealine/gd-icon-renderer-web/)
 
    This is only for colored icons, which can be toggled in `index.js`
 
